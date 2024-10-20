@@ -1,1 +1,24 @@
-
+{
+    "manifest_version": 3,
+    "name": "T&C Simplifier",
+    "version": "1.0",
+    "description": "Automatically detects and simplifies terms and conditions on websites.",
+    "permissions": ["activeTab", "scripting", "storage", "tabs"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "Simplify T&C"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "host_permissions": [
+      "https://*/"
+    ]
+  }
+  

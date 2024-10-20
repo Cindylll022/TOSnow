@@ -1,1 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simplify T&C</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; }
+      button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <h1>Simplify T&C</h1>
+    <p>Click the button below to simplify terms and conditions on the active tab.</p>
+    <button id="simplifyBtn">Simplify T&C</button>
+
+    <script>
+      document.getElementById("simplifyBtn").addEventListener("click", () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          chrome.scripting.executeScript({
+            target: { tabId: tabs[0].id },
+            files: ['content.js']
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+
 
