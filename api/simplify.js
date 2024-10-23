@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   };
 
   try {
-    const apiResponse = await fetch("https://ai.google.dev/gemini-api/generate-text", {
+    const apiResponse = await fetch("https://ai.google.dev/gemini-api/generateContent", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.GEMINI_API_KEY}`,
@@ -36,4 +36,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
-
