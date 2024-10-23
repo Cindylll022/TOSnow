@@ -31,11 +31,15 @@ async function simplifyDetectedTnC() {
         body: JSON.stringify({ text: tncText })
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       if (data.simplified_text) {
         alert("Simplified T&C:\n" + data.simplified_text);
-        console.log(simplified_text);
+        console.log(data.simplified_text); // Correct logging
       }
     } catch (error) {
       console.error("Error:", error);
@@ -46,4 +50,3 @@ async function simplifyDetectedTnC() {
 }
 
 simplifyDetectedTnC();
-
