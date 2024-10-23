@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   };
 
   try {
-    const apiResponse = await fetch("https://gemini-api-url/v1/generate", {
+    const apiResponse = await fetch("https://ai.google.dev/gemini-api/generate-text", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.GEMINI_API_KEY}`,
