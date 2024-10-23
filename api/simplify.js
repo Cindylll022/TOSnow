@@ -19,8 +19,8 @@ export default async function handler(req, res) {
   }
 
   // Prepare payload for the Generative Language API
-  const model = 'models/text-bison'; // Specify your model
-  const url = `https://generativelanguage.googleapis.com/v1beta/gemini-1.5-flash:generateContent`;
+  const model = 'gemini-1.5-flash'; // Specify your model
+  const url = `https://generativelanguage.googleapis.com/v1beta/${model}:generateContent`;
   
   const payload = {
     prompt: `Simplify the following legal text:\n${text}`,
