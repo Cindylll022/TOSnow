@@ -38,15 +38,22 @@ async function simplifyDetectedTnC() {
       const data = await response.json();
 
       if (data.simplified_text) {
-        alert("Simplified T&C:\n" + data.simplified_text);
-        console.log(data.simplified_text); // Correct logging
+        // Use console.log for debugging and consider displaying in a user-friendly way
+        console.log(data.simplified_text);
+        // Display simplified text in a user-friendly modal or section here
+      } else {
+        console.log("No simplified text received.");
+        alert("Could not simplify the terms and conditions. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
+      alert("An error occurred while simplifying the terms and conditions.");
     }
   } else {
     console.log("No T&C detected on this page.");
+    alert("No terms and conditions found on this page.");
   }
 }
+
 
 simplifyDetectedTnC();

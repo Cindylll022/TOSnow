@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   // Prepare payload for the Generative Language API
   const model = 'gemini-1.5-flash'; // Specify your model
   const url = `https://generativelanguage.googleapis.com/v1beta/${model}:generateContent`;
-  
+
   const payload = {
     prompt: `Simplify the following legal text:\n${text}`,
     max_tokens: 500,
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.GEMINI_API_KEY}`, // Replace with your actual API key
+        "Authorization": `Bearer ${process.env.GEMINI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
@@ -47,13 +47,18 @@ export default async function handler(req, res) {
 
     // Parse the API response
     const responseData = await response.json();
-    const simplifiedText = responseData.choices[0].text.trim();
-
-    // Send back the simplified text as the response
-    res.status(200).json({ simplified_text: simplifiedText });
+    
+    if (responseData.choices && responseData.choices.length > 0) {
+      const simplifiedText = responseData.choices[0].text.trim();
+      // Send back the simplified text as the response
+      res.status(200).json({ simplified_text: simplifiedText });
+    } else {
+      res.status(400).json({ error: "No content returned from API" });
+    }
   } catch (error) {
     console.error("Internal Server Error:", error.message);
     res.status(500).json({ error: "Internal server error", details: error.message });
   }
 }
+
 
