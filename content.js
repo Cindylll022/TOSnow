@@ -23,7 +23,7 @@ async function simplifyDetectedTnC() {
 
   if (tncText) {
     try {
-      const response = await fetch("https://tos-eh0h9ak1v-cindys-projects-0975090c.vercel.app/api/simplify", {
+      const response = await fetch("https://tos-5p3k0fut1-cindys-projects-0975090c.vercel.app/api/simplify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
