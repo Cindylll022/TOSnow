@@ -10,6 +10,7 @@ function findTnCSections() {
 
   paragraphs.forEach(paragraph => {
     const text = paragraph.innerText || paragraph.textContent;
+    console.log(text);
     if (text && detectTermsAndConditions(text)) {
       detectedSections.push(text);
     }
