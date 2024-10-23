@@ -1,5 +1,5 @@
 chrome.action.onClicked.addListener((tab) => {
-  if (tab.url) {  // Check if the tab has a valid URL
+  if (tab.url) {  
       chrome.scripting.executeScript({
           target: { tabId: tab.id },
           files: ['content.js']
