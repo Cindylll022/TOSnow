@@ -1,7 +1,7 @@
-const keywords = ["terms", "conditions", "privacy", "agreement", "liability", "disclaimer", "warranty"];
+const termsKeywords = ["terms", "conditions", "privacy", "agreement", "liability", "disclaimer", "warranty"];
 
 function detectTermsAndConditions(text) {
-  return keywords.some(keyword => text.toLowerCase().includes(keyword));
+  return termsKeywords.some(keyword => text.toLowerCase().includes(keyword));
 }
 
 function findTnCSections() {
