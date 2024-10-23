@@ -10,7 +10,6 @@ function findTnCSections() {
 
   paragraphs.forEach(paragraph => {
     const text = paragraph.innerText || paragraph.textContent;
-    console.log(text);
     if (text && detectTermsAndConditions(text)) {
       detectedSections.push(text);
     }
@@ -36,6 +35,7 @@ async function simplifyDetectedTnC() {
 
       if (data.simplified_text) {
         alert("Simplified T&C:\n" + data.simplified_text);
+        console.log(simplified_text);
       }
     } catch (error) {
       console.error("Error:", error);
