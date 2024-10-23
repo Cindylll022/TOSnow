@@ -1,0 +1,28 @@
+{
+  "name": "tosnow",
+  "version": "1.0.0",
+  "description": "A Gemini Generative AI powered tool for assistance with understanding terms and conditions.",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cindylll022/TOSnow.git"
+  },
+  "keywords": [
+    "\"simplify\"",
+    "\"terms\"",
+    "\"conditions\"",
+    "\"ai\""
+  ],
+  "author": "Cindy Li, Stephanie Choi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cindylll022/TOSnow/issues"
+  },
+  "homepage": "https://github.com/Cindylll022/TOSnow#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
