@@ -38,9 +38,9 @@ async function simplifyDetectedTnC() {
       const data = await response.json();
 
       if (data.simplified_text) {
-        // Use console.log for debugging and consider displaying in a user-friendly way
+        //delete console later
         console.log(data.simplified_text);
-        // Display simplified text in a user-friendly modal or section here
+        
       } else {
         console.log("No simplified text received.");
         alert("Could not simplify the terms and conditions. Please try again.");
