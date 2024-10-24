@@ -1,8 +1,9 @@
 document.getElementById('simplifyBtn').addEventListener('click', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        // Execute the content script function
         chrome.scripting.executeScript({
             target: { tabId: tabs[0].id },
-            function: simplifyTermsAndConditions // This refers to the function in content.js
+            function: () => window.simplifyTermsAndConditions()
         });
     });
 });

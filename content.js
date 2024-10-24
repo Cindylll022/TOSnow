@@ -52,5 +52,5 @@ async function simplifyDetectedTnC() {
     }
 }
 
-// This function will be called from popup.js
+// Export the function to the global scope
 window.simplifyTermsAndConditions = simplifyDetectedTnC;
