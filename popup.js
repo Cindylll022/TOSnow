@@ -11,3 +11,4 @@ function simplifyTermsAndConditions() {
     // Logic to simplify terms and conditions goes here
     alert("Simplifying terms and conditions...");
 }
+// popup
