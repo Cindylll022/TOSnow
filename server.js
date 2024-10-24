@@ -1,5 +1,5 @@
 const express = require('express');
-const fetch = require('node-fetch'); // This works for version 2.x
+const fetch = require('node-fetch'); // This will now work since it's version 2.x
 const cors = require('cors');
 require('dotenv').config();
 
