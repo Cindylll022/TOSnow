@@ -5,7 +5,7 @@ body {
     width: 600px; 
     overflow-wrap: break-word; /* Allows long text to wrap within the width */
     background-color: #16203d;
-    color: rgb(223, 226, 239);
+    color: rgb(233, 235, 243);
 }
 
 button {
