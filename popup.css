@@ -10,7 +10,7 @@ body {
 
 button {
     padding: 10px 20px;
-    background-color: #212652;
+    background-color: #393f74;
     color: #c4ceeb;
     border: 2px solid #9cacdb;
     border-radius: 25px;
@@ -27,7 +27,7 @@ li {
 }
 .textBox {
     padding: 10px 20px;
-    background-color: #393f74;
+    background-color: #212652;
     color: #ebeef6;
     border: 2px solid #9cacdb;
     margin-top: 20px;
