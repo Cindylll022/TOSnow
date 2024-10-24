@@ -13,6 +13,4 @@ chrome.action.onClicked.addListener((tab) => {
     } else {
         console.warn('No valid URL found for the active tab, or tab object is missing.');
     }
-  });
-  
-
+});

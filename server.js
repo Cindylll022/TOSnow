@@ -1,13 +1,14 @@
 const express = require('express');
+const fetch = require('node-fetch');
 const cors = require('cors');
-require('dotenv').config(); // Load environment variables
+require('dotenv').config();
 
 const app = express();
-const PORT = 3000; // Set the port
+const PORT = 3000;
 
 // Middleware
 app.use(cors({
-    origin: 'chrome-extension://<your-extension-id>' // Restrict CORS to your extension
+    origin: 'http://localhost:3000' // Allow requests from your local server
 }));
 app.use(express.json()); // Parse JSON request bodies
 
@@ -29,9 +30,6 @@ app.post('/api/simplify', async (req, res) => {
     };
 
     try {
-        // Use dynamic import for node-fetch
-        const fetch = (await import('node-fetch')).default;
-
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -48,7 +46,7 @@ app.post('/api/simplify', async (req, res) => {
         }
 
         const responseData = await response.json();
-        const simplifiedText = responseData.choices && responseData.choices[0]?.text ? responseData.choices[0].text.trim() : "No simplified text received.";
+        const simplifiedText = responseData.choices[0]?.text?.trim() || "No simplified text received.";
 
         res.status(200).json({ simplified_text: simplifiedText });
     } catch (error) {

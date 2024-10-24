@@ -2,17 +2,12 @@ document.getElementById('simplifyBtn').addEventListener('click', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.scripting.executeScript({
             target: { tabId: tabs[0].id },
-            function: invokeSimplification
+            function: simplifyTermsAndConditions
         });
     });
 });
 
-function invokeSimplification() {
-    // Call the function defined in content.js
-    if (typeof simplifyDetectedTnC === "function") {
-        simplifyDetectedTnC(); // Ensure the function exists
-    } else {
-        console.error("Function simplifyDetectedTnC is not defined.");
-    }
+function simplifyTermsAndConditions() {
+    alert("Simplifying terms and conditions...");
+    // The logic to simplify T&C will be executed through content.js
 }
-
