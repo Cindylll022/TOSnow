@@ -24,7 +24,7 @@ app.post('/api/simplify', async (req, res) => {
         return res.status(400).json({ error: "Text is required" });
     }
 
-    const prompt = `Simplify the following legal text in 50 words max in a simple manner in layman's terms, ensure that important agreements that users should know about is included, and format the result with appropriate HTML tags (such as bulletpoints), underline and bold important information:\n${text}`;
+    const prompt = `Simplify the following legal text in 50 words max in a simple manner in layman's terms, ensure that important agreements that users should know about is included, and format the result with appropriate HTML tags (such as bulletpoints), bold important information:\n${text}`;
 
     try {
         // Generate content using the model
