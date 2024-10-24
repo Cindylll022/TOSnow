@@ -1,16 +1,14 @@
 const express = require('express');
+const fetch = require('node-fetch'); // This works for version 2.x
 const cors = require('cors');
 require('dotenv').config();
-const fetch = (await import('node-fetch')).default; // Use dynamic import if you're on ESM
 
 const app = express();
 const PORT = 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Simplify route
 app.post('/api/simplify', async (req, res) => {
     const { text } = req.body;
 
@@ -38,13 +36,12 @@ app.post('/api/simplify', async (req, res) => {
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error("API Response Error:", response.statusText, errorText);
-            return res.status(response.status).json({ error: response.statusText, details: errorText });
+            console.error("API Response Error:", response.statusText);
+            return res.status(response.status).json({ error: response.statusText });
         }
 
         const responseData = await response.json();
-        const simplifiedText = responseData.choices[0]?.text?.trim() || "No simplified text received.";
+        const simplifiedText = responseData.choices[0].text.trim();
 
         res.status(200).json({ simplified_text: simplifiedText });
     } catch (error) {
@@ -53,7 +50,6 @@ app.post('/api/simplify', async (req, res) => {
     }
 });
 
-// Start server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
