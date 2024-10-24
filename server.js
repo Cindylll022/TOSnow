@@ -7,9 +7,14 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(cors({
-    origin: 'http://localhost:3000' // Allow requests from your local server
-}));
+app.use(cors()); // Allow all origins for development
+// Alternatively, for specific origins:
+// app.use(cors({
+//     origin: [
+//         'chrome-extension://<your-extension-id>',
+//         'http://localhost:3000'
+//     ]
+// }));
 app.use(express.json()); // Parse JSON request bodies
 
 // Simplify route
@@ -59,3 +64,4 @@ app.post('/api/simplify', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
