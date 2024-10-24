@@ -1,4 +1,6 @@
 document.getElementById('simplifyBtn').addEventListener('click', () => {
+    document.getElementById('spinner').style.display = 'block';
+    document.getElementById('output').innerHTML = ''; 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         // Execute the content script function
         chrome.scripting.executeScript({
@@ -11,10 +13,10 @@ document.getElementById('simplifyBtn').addEventListener('click', () => {
 // Listen for messages from the content script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.summary) {
-        // Display the simplified text in the popup
-        document.body.innerHTML += `<div class = "textBox"><h2>Simplified T&C:</h2>${message.summary} </div>`;
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('output').innerHTML += `<div class = "textBox"><h2>Simplified T&C:</h2>${message.summary} </div>`;
     } else if (message.error) {
-        // Display any error messages
-        document.body.innerHTML += `<p style="color: red;">Error: ${message.error}</p>`;
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('output').innerHTML += `<p style="color: red;">Error: ${message.error}</p>`;
     }
 });
