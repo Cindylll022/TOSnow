@@ -12,9 +12,9 @@ document.getElementById('simplifyBtn').addEventListener('click', () => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.summary) {
         // Display the simplified text in the popup
-        simplifiedText.innerHTML += `<h2>Simplified T&C:</h2>${message.summary}`;
+        document.body.innerHTML += `<h2>Simplified T&C:</h2>${message.summary}`;
     } else if (message.error) {
         // Display any error messages
-        simplifiedText.innerHTML += `<p style="color: red;">Error: ${message.error}</p>`;
+        document.body.innerHTML += `<p style="color: red;">Error: ${message.error}</p>`;
     }
 });

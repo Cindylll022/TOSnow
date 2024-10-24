@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     padding: 20px;
+    line-height: 1.5;
     width: 400px; /* Set the width to your desired size */
     overflow-wrap: break-word; /* Allows long text to wrap within the width */
 }
@@ -13,6 +14,4 @@ button {
     cursor: pointer;
     width: 100%; /* Make button take full width */
 }
-#simplifiedText{
-    line-height: 1.5;
-}
+
