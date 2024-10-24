@@ -38,21 +38,19 @@ async function simplifyDetectedTnC() {
             const data = await response.json();
 
             if (data.simplified_text) {
-                alert("Simplified T&C:\n" + data.simplified_text);
+                // Send the simplified text back to the popup
+                chrome.runtime.sendMessage({ summary: data.simplified_text });
             } else {
-                alert("No simplified text received.");
+                chrome.runtime.sendMessage({ error: "No simplified text received." });
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("An error occurred while simplifying the terms and conditions.");
+            chrome.runtime.sendMessage({ error: "An error occurred while simplifying the terms and conditions." });
         }
     } else {
-        alert("No terms and conditions found on this page.");
+        chrome.runtime.sendMessage({ error: "No terms and conditions found on this page." });
     }
 }
 
-simplifyDetectedTnC();
-
-
-
-
+// This function will be called from popup.js
+window.simplifyTermsAndConditions = simplifyDetectedTnC;
