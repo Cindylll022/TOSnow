@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simplify T&C</title>
-    <link rel="stylesheet" href="popup.css"> <!-- Link to the CSS file -->
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        #loading { display: none; }
+    </style>
 </head>
 <body>
     <h1>Simplify T&C</h1>
     <p>Click the button below to simplify terms and conditions on the active tab.</p>
     <button id="simplifyBtn">Simplify T&C</button>
-    <div id="loading" class="spinner" style="display: none;"></div> <!-- Loading spinner -->
-    <h2 id="resultTitle" style="display: none;">Simplified T&C:</h2>
-    <p id="resultText" style="display: none;"></p> <!-- Result area -->
-    <p id="errorText" class="error" style="display: none;"></p> <!-- Error area -->
-
+    <div id="loading">Generating...</div> <!-- Loading message -->
     <script src="popup.js"></script>
 </body>
 </html>
