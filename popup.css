@@ -5,13 +5,13 @@ body {
     width: 400px; /* Set the width to your desired size */
     overflow-wrap: break-word; /* Allows long text to wrap within the width */
     background-color: #16203d;
-    color: white;
+    color: rgb(244, 246, 255);
 }
 
 button {
     padding: 10px 20px;
     background-color: #9cacdb;
-    color: white;
+    color: rgb(63, 70, 102);
     border: none;
     cursor: pointer;
     font-weight: bold;
