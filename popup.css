@@ -2,7 +2,7 @@ body {
     font-family: "Lucida Consoles", monospace;
     padding: 20px;
     line-height: 1.5;
-    width: 400px; /* Set the width to your desired size */
+    width: 600px; 
     overflow-wrap: break-word; /* Allows long text to wrap within the width */
     background-color: #16203d;
     color: rgb(223, 226, 239);
