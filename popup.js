@@ -21,7 +21,7 @@ document.getElementById('simplifyBtn').addEventListener('click', () => {
                 errorText.textContent = chrome.runtime.lastError.message;
                 errorText.style.display = 'block';
             } else {
-                // Assume results contain the simplified text
+                // Assuming results contain the simplified text
                 const simplifiedText = results[0].result; // Adjust this based on how the result is returned
                 if (simplifiedText) {
                     resultTitle.style.display = 'block';
@@ -36,8 +36,50 @@ document.getElementById('simplifyBtn').addEventListener('click', () => {
     });
 });
 
+// This function is invoked by the content script
 function simplifyTermsAndConditions() {
-    // Logic to simplify terms and conditions (you may use the existing logic)
-    alert("This function would contain the logic to simplify terms and conditions.");
-    return "This is a placeholder for the simplified terms and conditions."; // Simulated return value
+    const termsKeywords = ["terms", "conditions", "privacy", "agreement", "liability", "disclaimer", "warranty"];
+    
+    function detectTermsAndConditions(text) {
+        return termsKeywords.some(keyword => text.toLowerCase().includes(keyword));
+    }
+    
+    function findTnCSections() {
+        const paragraphs = document.querySelectorAll("p, div");
+        const detectedSections = [];
+
+        paragraphs.forEach(paragraph => {
+            const text = paragraph.innerText || paragraph.textContent;
+            if (text && detectTermsAndConditions(text)) {
+                detectedSections.push(text);
+            }
+        });
+
+        return detectedSections.join("\n\n");
+    }
+
+    // Simulating the fetch request for simplification
+    const tncText = findTnCSections();
+    
+    if (tncText) {
+        // Assuming you have a local server running and a valid endpoint
+        fetch("http://localhost:3000/api/simplify", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: tncText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Return the simplified text from the content script
+            return data.simplified_text || "No simplified text received.";
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            return "An error occurred while simplifying the terms and conditions.";
+        });
+    } else {
+        return "No terms and conditions found on this page.";
+    }
 }
