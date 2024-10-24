@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const fetch = (await import('node-fetch')).default; // Use dynamic import if you're on ESM
 
 const app = express();
 const PORT = 3000;
@@ -17,7 +18,6 @@ app.post('/api/simplify', async (req, res) => {
         return res.status(400).json({ error: "Text is required" });
     }
 
-    const fetch = (await import('node-fetch')).default; // Dynamic import of node-fetch
     const model = 'gemini-1.5-flash';
     const url = `https://generativelanguage.googleapis.com/v1beta/${model}:generateContent`;
 
