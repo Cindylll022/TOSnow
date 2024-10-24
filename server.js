@@ -1,14 +1,22 @@
-const express = require('express');
-const fetch = require('node-fetch'); // This will now work since it's version 2.x
-const cors = require('cors');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
+// Initialize Google Generative AI
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+// Simplify route
 app.post('/api/simplify', async (req, res) => {
     const { text } = req.body;
 
@@ -16,40 +24,25 @@ app.post('/api/simplify', async (req, res) => {
         return res.status(400).json({ error: "Text is required" });
     }
 
-    const model = 'gemini-1.5-flash';
-    const url = `https://generativelanguage.googleapis.com/v1beta/${model}:generateContent`;
-
-    const payload = {
-        prompt: `Simplify the following legal text:\n${text}`,
-        max_tokens: 500,
-        temperature: 0.7,
-    };
+    const prompt = `Simplify the following legal text:\n${text}`;
 
     try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${process.env.GEMINI_API_KEY}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-        });
+        // Generate content using the model
+        const result = await model.generateContent(prompt);
 
-        if (!response.ok) {
-            console.error("API Response Error:", response.statusText);
-            return res.status(response.status).json({ error: response.statusText });
+        if (result && result.response) {
+            const simplifiedText = result.response.text(); // Get the simplified text
+            res.status(200).json({ simplified_text: simplifiedText });
+        } else {
+            res.status(500).json({ error: "No response from the model" });
         }
-
-        const responseData = await response.json();
-        const simplifiedText = responseData.choices[0].text.trim();
-
-        res.status(200).json({ simplified_text: simplifiedText });
     } catch (error) {
-        console.error("Internal Server Error:", error.message);
+        console.error("Error generating content:", error);
         res.status(500).json({ error: "Internal server error", details: error.message });
     }
 });
 
+// Start server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
