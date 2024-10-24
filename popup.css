@@ -1,0 +1,64 @@
+/* popup.css */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+#loading {
+    display: none; /* Initially hidden */
+    font-size: 18px;
+    color: #555;
+    text-align: center; /* Center the loading text */
+}
+
+/* Spinner styles */
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto; /* Center the spinner */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Styles for the simplified text or error messages */
+h2 {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}

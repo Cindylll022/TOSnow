@@ -1,20 +1,43 @@
 document.getElementById('simplifyBtn').addEventListener('click', () => {
+    const loadingSpinner = document.getElementById('loading');
+    const resultTitle = document.getElementById('resultTitle');
+    const resultText = document.getElementById('resultText');
+    const errorText = document.getElementById('errorText');
+
+    // Show loading spinner and hide previous results
+    loadingSpinner.style.display = 'block';
+    resultTitle.style.display = 'none';
+    resultText.style.display = 'none';
+    errorText.style.display = 'none';
+
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        // Execute the content script function
         chrome.scripting.executeScript({
             target: { tabId: tabs[0].id },
-            function: () => window.simplifyTermsAndConditions()
+            function: simplifyTermsAndConditions
+        }, (results) => {
+            loadingSpinner.style.display = 'none'; // Hide spinner after script execution
+
+            if (chrome.runtime.lastError) {
+                errorText.textContent = chrome.runtime.lastError.message;
+                errorText.style.display = 'block';
+            } else {
+                // Assume results contain the simplified text
+                const simplifiedText = results[0].result; // Adjust this based on how the result is returned
+                if (simplifiedText) {
+                    resultTitle.style.display = 'block';
+                    resultText.textContent = simplifiedText;
+                    resultText.style.display = 'block';
+                } else {
+                    errorText.textContent = "No simplified text received.";
+                    errorText.style.display = 'block';
+                }
+            }
         });
     });
 });
 
-// Listen for messages from the content script
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.summary) {
-        // Display the simplified text in the popup
-        document.body.innerHTML += `<h2>Simplified T&C:</h2><p>${message.summary}</p>`;
-    } else if (message.error) {
-        // Display any error messages
-        document.body.innerHTML += `<p style="color: red;">Error: ${message.error}</p>`;
-    }
-});
+function simplifyTermsAndConditions() {
+    // Logic to simplify terms and conditions (you may use the existing logic)
+    alert("This function would contain the logic to simplify terms and conditions.");
+    return "This is a placeholder for the simplified terms and conditions."; // Simulated return value
+}
