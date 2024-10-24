@@ -14,6 +14,7 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    font-weight: bold;
     width: 100%; /* Make button take full width */
 }
 p {
