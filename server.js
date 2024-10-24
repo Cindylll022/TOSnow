@@ -1,5 +1,4 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -7,15 +6,8 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(cors()); // Allow all origins for development
-// Alternatively, for specific origins:
-// app.use(cors({
-//     origin: [
-//         'chrome-extension://<your-extension-id>',
-//         'http://localhost:3000'
-//     ]
-// }));
-app.use(express.json()); // Parse JSON request bodies
+app.use(cors());
+app.use(express.json());
 
 // Simplify route
 app.post('/api/simplify', async (req, res) => {
@@ -25,6 +17,7 @@ app.post('/api/simplify', async (req, res) => {
         return res.status(400).json({ error: "Text is required" });
     }
 
+    const fetch = (await import('node-fetch')).default; // Dynamic import of node-fetch
     const model = 'gemini-1.5-flash';
     const url = `https://generativelanguage.googleapis.com/v1beta/${model}:generateContent`;
 
