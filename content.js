@@ -58,5 +58,7 @@ async function simplifyDetectedTnC() {
 }
 
 simplifyDetectedTnC();
+window.simplifyDetectedTnC = simplifyDetectedTnC; // Make the function accessible in the global scope
+
 
 

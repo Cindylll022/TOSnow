@@ -5,7 +5,7 @@
   "description": "Automatically detects and simplifies terms and conditions on websites.",
   "permissions": ["activeTab", "scripting", "storage", "tabs"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js"  
   },
   "action": {
     "default_popup": "popup.html",
@@ -22,4 +22,5 @@
     "http://localhost/*"
   ]
 }
+
 
