@@ -13,3 +13,6 @@ button {
     cursor: pointer;
     width: 100%; /* Make button take full width */
 }
+#simplifiedText{
+    line-height: 1.5;
+}
