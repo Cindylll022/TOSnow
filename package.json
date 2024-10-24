@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Cindylll022/TOSnow#readme",
   "dependencies": {
+    "express": "^4.21.1",
     "node-fetch": "^3.3.2"
   }
 }

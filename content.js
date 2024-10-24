@@ -23,7 +23,8 @@ async function simplifyDetectedTnC() {
 
   if (tncText) {
     try {
-      const response = await fetch("https://tos-now.vercel.app/api/simplify", {
+      // Updated to point to the local server
+      const response = await fetch("http://localhost:3000/simplify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -37,10 +38,11 @@ async function simplifyDetectedTnC() {
 
       const data = await response.json();
 
-      if (data.simplified_text) {
+      if (data.summary) {
         // Use console.log for debugging and consider displaying in a user-friendly way
-        console.log(data.simplified_text);
+        console.log(data.summary);
         // Display simplified text in a user-friendly modal or section here
+        alert("Simplified T&C:\n" + data.summary); // Simple alert to display the simplified text
       } else {
         console.log("No simplified text received.");
         alert("Could not simplify the terms and conditions. Please try again.");
@@ -55,5 +57,5 @@ async function simplifyDetectedTnC() {
   }
 }
 
-
 simplifyDetectedTnC();
+
