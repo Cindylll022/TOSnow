@@ -10,9 +10,9 @@ body {
 
 button {
     padding: 10px 20px;
-    background-color: #9cacdb;
-    color: rgb(63, 70, 102);
-    border: 2px solid rgb(11, 3, 40);
+    background-color: #333d58;
+    color: rgb(223, 226, 239);
+    border: 2px solid #9cacdb;
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
