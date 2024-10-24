@@ -1,16 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Lucida Consoles", monospace;
     padding: 20px;
     line-height: 1.5;
     width: 400px; /* Set the width to your desired size */
     overflow-wrap: break-word; /* Allows long text to wrap within the width */
-    background-color: #001A60;
+    background-color: #16203d;
     color: white;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #82a1f0;
+    background-color: #7f96dc;
     color: white;
     border: none;
     cursor: pointer;
