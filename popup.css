@@ -3,7 +3,7 @@ body {
     padding: 40px;
     line-height: 1.5;
     width: 600px; 
-    overflow-wrap: break-word; /* Allows long text to wrap within the width */
+    overflow-wrap: break-word; 
     background-color: #16203d;
     color: rgb(233, 235, 243);
 }
@@ -17,7 +17,7 @@ button {
     cursor: pointer;
     font-weight: bold;
     font-family: "Lucida Consoles", monospace;
-    width: 100%; /* Make button take full width */
+    width: 100%; 
 }
 p {
     font-size: 14px;
