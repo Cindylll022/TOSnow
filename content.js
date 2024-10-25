@@ -38,7 +38,7 @@ async function simplifyDetectedTnC() {
             const data = await response.json();
 
             if (data.simplified_text) {
-                // Send the simplified text back to the popup
+                
                 chrome.runtime.sendMessage({ summary: data.simplified_text });
             } else {
                 chrome.runtime.sendMessage({ error: "No simplified text received." });
@@ -52,5 +52,5 @@ async function simplifyDetectedTnC() {
     }
 }
 
-// Export the function to the global scope
+
 window.simplifyTermsAndConditions = simplifyDetectedTnC;
