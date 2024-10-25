@@ -8,15 +8,15 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
 
-// Initialize Google Generative AI
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-// Simplify route
+
 app.post('/api/simplify', async (req, res) => {
     const { text } = req.body;
 
@@ -27,11 +27,11 @@ app.post('/api/simplify', async (req, res) => {
     const prompt = `Simplify the following legal text in 50 words max in a simple manner in layman's terms, ensure that important agreements that users should know about is included, and format the result with appropriate HTML tags (such as bulletpoints), bold important information:\n${text}`;
 
     try {
-        // Generate content using the model
+      
         const result = await model.generateContent(prompt);
 
         if (result && result.response) {
-            const simplifiedText = result.response.text(); // Get the simplified text
+            const simplifiedText = result.response.text(); 
             res.status(200).json({ simplified_text: simplifiedText });
         } else {
             res.status(500).json({ error: "No response from the model" });
@@ -42,7 +42,7 @@ app.post('/api/simplify', async (req, res) => {
     }
 });
 
-// Start server
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

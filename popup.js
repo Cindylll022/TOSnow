@@ -2,7 +2,7 @@ document.getElementById('simplifyBtn').addEventListener('click', () => {
     document.getElementById('spinner').style.display = 'block';
     document.getElementById('output').innerHTML = ''; 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        // Execute the content script function
+        
         chrome.scripting.executeScript({
             target: { tabId: tabs[0].id },
             function: () => window.simplifyTermsAndConditions()
@@ -10,7 +10,7 @@ document.getElementById('simplifyBtn').addEventListener('click', () => {
     });
 });
 
-// Listen for messages from the content script
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.summary) {
         document.getElementById('spinner').style.display = 'none';
